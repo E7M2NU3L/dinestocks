@@ -1,0 +1,37 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1  --5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Color Theme Swatches in Hex */
+  --Graphic-Design-1-hex { color: #4F5059; }
+  --Graphic-Design-2-hex { color: #181B26; }
+  --Graphic-Design-3-hex { color: #E4EBF2; }
+  --Graphic-Design-4-hex { color: #D2D9D9; }
+  --Graphic-Design-5-hex { color: #0D0D0D; }
+
+/* Color Theme Swatches in RGBA */
+  --Graphic-Design-1-rgba { color: rgba(79, 79, 89, 1); }
+  --Graphic-Design-2-rgba { color: rgba(24, 26, 38, 1); }
+  --Graphic-Design-3-rgba { color: rgba(227, 235, 242, 1); }
+  --Graphic-Design-4-rgba { color: rgba(210, 216, 216, 1); }
+  --Graphic-Design-5-rgba { color: rgba(12, 12, 12, 1); }
+
+/* Color Theme Swatches in HSLA */
+  --Graphic-Design-1-hsla { color: hsla(236, 5, 33, 1); }
+  --Graphic-Design-2-hsla { color: hsla(230, 21, 12, 1); }
+  --Graphic-Design-3-hsla { color: hsla(208, 36, 92, 1); }
+  --Graphic-Design-4-hsla { color: hsla(180, 7, 83, 1); }
+  --Graphic-Design-5-hsla { color: hsla(0, 0, 5, 1); }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
