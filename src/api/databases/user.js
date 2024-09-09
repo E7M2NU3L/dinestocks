@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 export async function CreateUser({ firstname, lastname, email, password }) {
     try {
         const { data, error } = await supabase.from('User').insert({
-            id: uuidv4(),
             firstname: firstname,
             lastname: lastname,
             email: email,
