@@ -9,15 +9,22 @@ export async function RegisterUser({ firstname, lastname, email, password }) {
             password: password
         });
 
+        console.log(data);
+
         if (error) throw new Error("Supabase Auth sign-up failed");
+
+        const userId = data.user.id;
 
         // Store the user data in the database
         const response = await CreateUser({
             firstname,
             lastname,
             email,
-            password
+            password,
+            userId
         });
+
+        console.log(response);
 
         if (!response) throw new Error("Failed to create user in the database");
 

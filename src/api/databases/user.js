@@ -1,15 +1,17 @@
 import { supabase } from "../../config/supabaseConf";
-import { v4 as uuidv4 } from 'uuid';
 
-export async function CreateUser({ firstname, lastname, email, password }) {
+export async function CreateUser({ firstname, lastname, email, password, userId }) {
     try {
         const { data, error } = await supabase.from('User').insert({
             firstname: firstname,
             lastname: lastname,
             email: email,
-            password: password,  // Already hashed
-            created_at: new Date().toISOString(),
+            password: password,
+            user_id : userId
         });
+
+        console.log(data);
+        console.log(error);
 
         if (error) throw new Error("Database insertion failed");
 

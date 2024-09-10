@@ -1,8 +1,9 @@
 import { Button, Card, CardBody, CardHeader, Image, Input } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
-import { Bounce, toast } from 'react-toastify';
-import { ForgotPasswordQuery } from '../../queries/users';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { ForgotPasswordQuery } from '../../queries/users';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -62,12 +63,38 @@ const ForgotPassword = () => {
   // Redirect on successful email submission
   useEffect(() => {
     if (isSentEmail) {
-      navigate("/sign-in");
+      toast.success("Email has been sent to reset your password.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      })
+      setTimeout(() => {
+        navigate("/reset-password");
+      }, 1500);
     }
   }, [isSentEmail, navigate]);
 
+  useEffect(() => {
+    toast.error("Failed to reset the Password", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "light",
+      transition: Bounce,
+    })
+  } , [isFailedtoSendEmail])
+
   return (
     <div className="min-h-[90vh] flex justify-center items-center bg-gray-100">
+      <ToastContainer />
       <Card className="py-4 px-6 max-w-md w-full shadow-md">
         <CardHeader className="pb-0 pt-2 flex-col items-start">
           <p className="text-tiny uppercase font-bold">Forgot Password</p>

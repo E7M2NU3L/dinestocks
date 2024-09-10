@@ -16,6 +16,9 @@ import Dashboard from "./pages/protected/dashboard"
 import Features from "./pages/root/features"
 import Docs from "./pages/root/docs"
 import AboutUs from "./pages/root/about-us"
+import ChooseRole from "./pages/auth/choose-role"
+import CreateRestaurant from "./pages/auth/create-restaurant"
+import CreateVendor from "./pages/auth/create-vendor"
 
 function App() {
   return (
@@ -40,6 +43,11 @@ function App() {
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/choose-role" element={
+              <ChooseRole />
+            } />
+            <Route path="/create-restaurant" element={<CreateRestaurant />} />
+            <Route path="/create-vendor" element={<CreateVendor />} />
           </Route>
 
           {/* Dashboard Routes */}

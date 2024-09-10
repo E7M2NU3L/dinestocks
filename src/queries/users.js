@@ -5,17 +5,17 @@ import { Logout } from "../api/auth/logout";
 import { ForgotPassword } from "../api/auth/forgot-password";
 import { ResetPassword } from "../api/auth/reset-password";
 
-export const RegisterQuery = (data) => {
+export const RegisterQuery = () => {
     return useMutation({
-        mutationKey : ["user", data],
-        mutationFn : () => RegisterUser(data)
+        mutationKey : ["user"],
+        mutationFn : (data) => RegisterUser(data)
     })
 };
 
-export const LoginQuery = (data) => {
+export const LoginQuery = () => {
     return useMutation({
-        mutationKey : ["login-user", data],
-        mutationFn : () => LoginUser(data)
+        mutationKey : ["login-user"],
+        mutationFn : (data) => LoginUser(data)
     })
 };
 
@@ -46,16 +46,16 @@ export const LogoutQuery = () => {
     })
 };
 
-export const ForgotPasswordQuery = (data) => {
+export const ForgotPasswordQuery = () => {
     return useMutation({
-        mutationKey : ['forgot-password', data],
-        mutationFn : () => ForgotPassword(data)
+        mutationKey : ['forgot-password'],
+        mutationFn : (data) => ForgotPassword(data)
     })
 };
 
-export const ResetPasswordQuery = (data) => {
+export const ResetPasswordQuery = () => {
     return useMutation({
-        mutationKey : ['reset-password', data],
-        mutationFn : () => ResetPassword(data) 
+        mutationKey : ['reset-password'],
+        mutationFn : (data) => ResetPassword(data) 
     })
 };

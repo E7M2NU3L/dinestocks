@@ -1,8 +1,9 @@
 import { Button, Card, CardBody, CardHeader, Image, Input } from '@nextui-org/react';
 import React, { useState, useEffect } from 'react';
-import { Bounce, toast } from 'react-toastify';
-import { ResetPasswordQuery } from '../../queries/users';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { ResetPasswordQuery } from '../../queries/users';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -62,8 +63,19 @@ const ResetPassword = () => {
   // Redirect after successful reset
   useEffect(() => {
     if (resettedPassword) {
+      toast.success("The password has been resetted successfullly.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "light",
+        transition: Bounce,
+      });
+
       setTimeout(() => {
-        navigate('/sign-in');
+        navigate('/sign-up');
       }, 1500);
     }
   }, [resettedPassword, navigate]);
@@ -86,6 +98,7 @@ const ResetPassword = () => {
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center bg-gray-100">
+      <ToastContainer />
       <Card className="py-4 px-6 max-w-md w-full shadow-md">
         <CardHeader className="pb-0 pt-2 flex-col items-start">
           <p className="text-tiny uppercase font-bold">Reset Password</p>

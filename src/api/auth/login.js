@@ -1,16 +1,21 @@
 import { supabase } from "../../config/supabaseConf";
 
-export async function LoginUser({email, password}) {
+export async function LoginUser(loginData) {
     try {
+        console.log(loginData);
         const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
+            email: loginData.email,
+            password: loginData.password,
           })
 
-        if (error) throw Error;
+          console.log(error);
+          console.log(data);
+
+        if (error) throw Error("Failed to Login");
         return data;
     } catch (error) {
-        return error;
+        if (error instanceof Error) throw new Error(error.message);
+        else throw new Error("Unknown Error");
     }
 }
 
@@ -23,10 +28,11 @@ export async function LoginwithGithub() {
             }
         })
 
-        if (error) throw Error;
+        if (error) throw Error("Failed to Login");
         return data;
     } catch (error) {
-        return error;
+        if (error instanceof Error) throw new Error(error.message);
+        else throw new Error("Unknown Error");
     }
 }
 
@@ -39,10 +45,11 @@ export async function LoginwithGoogle() {
             }
         })
 
-        if (error) throw Error;
+        if (error) throw Error("Failed to Login");
         return data;
     } catch (error) {
-        return error;
+        if (error instanceof Error) throw new Error(error.message);
+        else throw new Error("Unknown Error");
     }
 }
 
@@ -55,9 +62,10 @@ export async function LoginwithLinkedin() {
             }
         })
 
-        if (error) throw Error;
+        if (error) throw Error("Failed to Login");
         return data;
     } catch (error) {
-        return error;
+        if (error instanceof Error) throw new Error(error.message);
+        else throw new Error("Unknown Error");
     }
 }

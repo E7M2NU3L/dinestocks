@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import OptimizedImage from '../../components/image-store/image-store';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { Bounce, toast } from 'react-toastify';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { RegisterSchema } from '../../schemas/auth';
 import { RegisterQuery } from '../../queries/users';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
     const { mutateAsync: Register, isPending: isRegistering, isError: isFailedToRegister, isSuccess: isRegistered } = RegisterQuery();
+    const navigate = useNavigate();
 
     const formik = useFormik({
         initialValues: {
@@ -20,9 +22,10 @@ const Signup = () => {
         validationSchema: RegisterSchema,
         onSubmit: async (data) => {
             try {
-                console.log(values);
+                console.log(data);
                 const promise = await Register(data);
                 console.log(promise);
+               
             } catch (error) {
                 const errorMessage = error instanceof Error ? error.message : "Unknown Error Occurred";
                 toast.error(errorMessage, {
@@ -69,14 +72,20 @@ const Signup = () => {
                 theme: "light",
                 transition: Bounce,
             });
+            setTimeout(() => { 
+                navigate('/choose-role')
+            }, 1500);
         }
     }, [isRegistered]);
 
     return (
         <section className="">
+            <ToastContainer />
             <div className="lg:grid lg:min-h-[90vh] lg:grid-cols-12">
-                <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
-                    <OptimizedImage path={"sign-in"} />
+            <aside className="relative block lg:order-last lg:col-span-5 lg:h-[90vh] xl:col-span-6">
+                    <div className='relative h-full'>
+                        <OptimizedImage path={"sign-in"} className="object-cover w-full h-full" />
+                    </div>
                 </aside>
 
                 <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">

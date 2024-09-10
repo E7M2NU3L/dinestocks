@@ -3,8 +3,9 @@ import OptimizedImage from '../../components/image-store/image-store';
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { LoginSchema } from '../../schemas/auth';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { LoginQuery } from '../../queries/users';
-import { Bounce, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignIn = () => {
     const {mutateAsync : Login, isPending : isLogging, isSuccess : isLoggedin, isError : isfailedtoLogin} = LoginQuery();
@@ -74,6 +75,7 @@ const SignIn = () => {
     }, [isLoggedin]);
 
     useEffect(() => {
+       if (isfailedtoLogin) {
         toast.error("Login has been failed", {
             position: "top-right",
             autoClose: 5000,
@@ -85,10 +87,12 @@ const SignIn = () => {
             theme: "light",
             transition: Bounce,
             });
+       }
     }, [isfailedtoLogin]);
 
     return (
         <section className="">
+            <ToastContainer />
             <div className="lg:grid lg:min-h-[90vh] lg:grid-cols-12">
                 <main className="flex items-start justify-start px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
                     <div className="max-w-xl lg:max-w-3xl">

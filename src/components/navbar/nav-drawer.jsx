@@ -13,7 +13,10 @@ import {
 const NavDrawer = ({ isOpen, onClose }) => {
   return (
     <motion.div
-      className='fixed inset-0 bg-white z-50 flex px-5 w-full justify-around h-screen flex-col gap-y-6 items-center'
+      className='fixed inset-0 bg-white flex px-5 w-full justify-around h-screen flex-col gap-y-6 items-center'
+      style={{
+        zIndex : 9999
+      }}
       initial={{ x: '100%' }}
       animate={{ x: isOpen ? '0%' : '100%' }}
       transition={{ type: 'spring', stiffness: 80 }}
