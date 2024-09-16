@@ -4,7 +4,7 @@ import { Image } from '@nextui-org/react'
 
 const Features = () => {
   return (
-    <div className='flex md:justify-between justify-center flex-col md:flex-row md:gap-y-0 items-center px-4 md:px-0 max-w-7xl mx-auto w-full min-h-[90vh] py-12 md:py-16'>
+    <div className='flex md:justify-between justify-center flex-col md:flex-row-reverse md:gap-y-0 items-center px-4 md:px-0 max-w-7xl mx-auto w-full min-h-[90vh] py-12 md:py-16'>
     <div className='max-w-xl flex flex-col gap-y-4'>
       <h1 className='text-5xl font-bold text-dark-2'>
       Streamlining Operations for Efficient Restaurant Supply Chain Management

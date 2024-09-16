@@ -19,7 +19,7 @@ const NavDrawer = ({ isOpen, onClose }) => {
       }}
       initial={{ x: '100%' }}
       animate={{ x: isOpen ? '0%' : '100%' }}
-      transition={{ type: 'spring', stiffness: 80 }}
+      transition={{ stiffness: 80 }}
     >
       <button onClick={onClose} className="absolute top-5 right-5 text-dark-5">X</button>
       <section>
@@ -39,10 +39,16 @@ const NavDrawer = ({ isOpen, onClose }) => {
         <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 hover:border hover:border-slate-900 bg-dark-5 text-dark-3 rounded-lg px-3 py-1' : 'text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'} to={"/blogs"}>
           Blogs
         </NavLink>
+        <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 hover:border hover:border-slate-900 bg-dark-5 text-dark-3 rounded-lg px-3 py-1' : 'text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'} to={"/docs"}>
+          Docs
+        </NavLink>
+        <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 hover:border hover:border-slate-900 bg-dark-5 text-dark-3 rounded-lg px-3 py-1' : 'text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'} to={"/about-us"}>
+          About us
+        </NavLink>
         <Dropdown>
           <DropdownTrigger>
             <button className='text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'>
-              About Us {">"}
+              More {">"}
             </button>
           </DropdownTrigger>
 

@@ -23,9 +23,6 @@ export async function LoginwithGithub() {
     try {
         const {data, error} = await supabase.auth.signInWithOAuth({
             provider : 'github',
-            options : {
-                redirectTo : 'http://localhost:5173/dashboard'
-            }
         })
 
         if (error) throw Error("Failed to Login");
@@ -41,7 +38,10 @@ export async function LoginwithGoogle() {
         const {data, error} = await supabase.auth.signInWithOAuth({
             provider : 'google',
             options : {
-                redirectTo : 'http://localhost:5173/dashboard'
+                queryParams: {
+                    access_type: 'offline',
+                    prompt: 'consent',
+                },
             }
         })
 
@@ -57,9 +57,6 @@ export async function LoginwithLinkedin() {
     try {
         const {data, error} = await supabase.auth.signInWithOAuth({
             provider : 'linkedin_oidc',
-            options : {
-                redirectTo : 'http://localhost:5173/dashboard'
-            }
         })
 
         if (error) throw Error("Failed to Login");

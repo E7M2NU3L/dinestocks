@@ -10,7 +10,7 @@ const ResetPassword = () => {
   const navigate = useNavigate();
   
   // Password reset mutation query
-  const { mutateAsync: resetPassword, isSuccess: resettedPassword, isError: isFailedToResetPassword, isPending: isResettingPassword } = ResetPasswordQuery();
+  const { mutateAsync: resetPassword, isSuccess: resettedPassword, isPending: isResettingPassword } = ResetPasswordQuery();
 
   // Handle password input changes
   const handlePassword = (e) => {
@@ -79,22 +79,6 @@ const ResetPassword = () => {
       }, 1500);
     }
   }, [resettedPassword, navigate]);
-
-  // Display error toast if reset fails
-  useEffect(() => {
-    if (isFailedToResetPassword) {
-      toast.error("Password reset failed. Please try again.", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: "light",
-        transition: Bounce,
-      });
-    }
-  }, [isFailedToResetPassword]);
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center bg-gray-100">

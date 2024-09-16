@@ -36,26 +36,32 @@ const Navbar = () => {
         <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 hover:border hover:border-slate-900 bg-dark-5 text-dark-3 rounded-lg px-3 py-1' : 'text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'} to={"/blogs"}>
           Blogs
         </NavLink>
+        <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 hover:border hover:border-slate-900 bg-dark-5 text-dark-3 rounded-lg px-3 py-1' : 'text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'} to={"/docs"}>
+          Docs
+        </NavLink>
+        <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 hover:border hover:border-slate-900 bg-dark-5 text-dark-3 rounded-lg px-3 py-1' : 'text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'} to={"/about-us"}>
+          About us
+        </NavLink>
         <Dropdown>
           <DropdownTrigger>
             <button className='text-sm font-normal text-dark-5 hover:border hover:border-slate-900 rounded-lg px-3 py-1'>
-              About Us {">"}
+              More {">"}
             </button>
           </DropdownTrigger>
 
           <DropdownMenu>
             <DropdownItem key="new">
-              <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 bg-dark-5 text-dark-3 rounded-lg px-3 py-2 h-7' : 'text-sm font-normal text-dark-5 rounded-lg px-3 py-2 h-7'} to={"/terms-of-service"}>
+              <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 px-3 py-2 h-7' : 'text-sm font-normal text-dark-5 rounded-lg px-3 py-2 h-7'} to={"/terms-of-service"}>
                 Terms of Service
               </NavLink>
             </DropdownItem>
             <DropdownItem key="copy">
-              <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 bg-dark-5 text-dark-3 rounded-lg px-3 py-2 h-7' : 'text-sm font-normal text-dark-5 rounded-lg px-3 py-2 h-7'} to={"/privacy-policy"}>
+              <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 px-3 py-2 h-7' : 'text-sm font-normal text-dark-5 rounded-lg px-3 py-2 h-7'} to={"/privacy-policy"}>
                 Privacy Policy
               </NavLink>
             </DropdownItem>
             <DropdownItem key="edit">
-              <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 bg-dark-5 text-dark-3 rounded-lg px-3 py-2 h-7' : 'text-sm font-normal text-dark-5 rounded-lg px-3 py-2 h-7'} to={"/contact-us"}>
+              <NavLink className={({isActive}) => isActive ? 'text-sm font-normal active:translate-y-1 active:scale-95 px-3 py-2 h-7' : 'text-sm font-normal text-dark-5 rounded-lg px-3 py-2 h-7'} to={"/contact-us"}>
                 Contact Us
               </NavLink>
             </DropdownItem>

@@ -6,6 +6,7 @@ import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { RegisterSchema } from '../../schemas/auth';
 import { RegisterQuery } from '../../queries/users';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthWrapper from '../../components/auth/auth-wrapper';
 
 const Signup = () => {
     const { mutateAsync: Register, isPending: isRegistering, isError: isFailedToRegister, isSuccess: isRegistered } = RegisterQuery();
@@ -79,116 +80,105 @@ const Signup = () => {
     }, [isRegistered]);
 
     return (
-        <section className="">
-            <ToastContainer />
-            <div className="lg:grid lg:min-h-[90vh] lg:grid-cols-12">
-            <aside className="relative block lg:order-last lg:col-span-5 lg:h-[90vh] xl:col-span-6">
-                    <div className='relative h-full'>
-                        <OptimizedImage path={"sign-in"} className="object-cover w-full h-full" />
+        <AuthWrapper imagePath={"sign-in"}>
+            <div className="max-w-xl lg:max-w-3xl">
+                <a className="block text-green-600" href="#">
+                    <span className="sr-only">Home</span>
+                    <IconForApp />
+                </a>
+
+                <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">Welcome To Dinestocks</h1>
+                <p className="mt-4 leading-relaxed text-gray-500">
+                    Create your Dinestocks account as either a restaurant or vendor to experience the unique B2B connectivity with nearby vendors.
+                </p>
+
+                <form className="mt-8 grid grid-cols-6 gap-6" onSubmit={formik.handleSubmit}>
+                    <div className="col-span-6 sm:col-span-3">
+                        <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">First Name</label>
+                        <input
+                            type="text"
+                            id="FirstName"
+                            name="firstname"
+                            disabled={isRegistering}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.firstname}
+                            className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-green-500"
+                        />
                     </div>
-                </aside>
 
-                <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-                    <div className="max-w-xl lg:max-w-3xl">
-                        <a className="block text-blue-600" href="#">
-                            <span className="sr-only">Home</span>
-                            <IconForApp />
-                        </a>
-
-                        <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">Welcome To Dinestocks</h1>
-                        <p className="mt-4 leading-relaxed text-gray-500">
-                            Create your Dinestocks account as either a restaurant or vendor to experience the unique B2B connectivity with nearby vendors.
-                        </p>
-
-                        <form className="mt-8 grid grid-cols-6 gap-6" onSubmit={formik.handleSubmit}>
-                            <div className="col-span-6 sm:col-span-3">
-                                <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">First Name</label>
-                                <input
-                                    type="text"
-                                    id="FirstName"
-                                    name="firstname"
-                                    disabled={isRegistering}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.firstname}
-                                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-blue-500"
-                                />
-                            </div>
-
-                            <div className="col-span-6 sm:col-span-3">
-                                <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">Last Name</label>
-                                <input
-                                    type="text"
-                                    id="LastName"
-                                    name="lastname"
-                                    disabled={isRegistering}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.lastname}
-                                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-blue-500"
-                                />
-                            </div>
-
-                            <div className="col-span-6">
-                                <label htmlFor="Email" className="block text-sm font-medium text-gray-700">Email</label>
-                                <input
-                                    type="email"
-                                    id="Email"
-                                    name="email"
-                                    disabled={isRegistering}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.email}
-                                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-blue-500"
-                                />
-                            </div>
-
-                            <div className="col-span-6 sm:col-span-3">
-                                <label htmlFor="Password" className="block text-sm font-medium text-gray-700">Password</label>
-                                <input
-                                    type="password"
-                                    id="Password"
-                                    name="password"
-                                    disabled={isRegistering}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.password}
-                                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-blue-500"
-                                />
-                            </div>
-
-                            <div className="col-span-6 sm:col-span-3">
-                                <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">Password Confirmation</label>
-                                <input
-                                    type="password"
-                                    id="PasswordConfirmation"
-                                    name="confirmPassword"
-                                    disabled={isRegistering}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                    value={formik.values.confirmPassword}
-                                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-blue-500"
-                                />
-                            </div>
-
-                            <div className="col-span-6">
-                                <button
-                                    type="submit"
-                                    disabled={isRegistering}
-                                    className="w-full px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
-                                >
-                                    {isRegistering ? 'Registering...' : 'Sign Up'}
-                                </button>
-                            </div>
-                        </form>
-
-                        <p className="mt-4 text-sm text-gray-500">
-                            Already have an account? <Link to="/sign-in" className="text-blue-600 hover:underline">Log In</Link>
-                        </p>
+                    <div className="col-span-6 sm:col-span-3">
+                        <label htmlFor="LastName" className="block text-sm font-medium text-gray-700">Last Name</label>
+                        <input
+                            type="text"
+                            id="LastName"
+                            name="lastname"
+                            disabled={isRegistering}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.lastname}
+                            className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-green-500"
+                        />
                     </div>
-                </main>
+
+                    <div className="col-span-6">
+                        <label htmlFor="Email" className="block text-sm font-medium text-gray-700">Email</label>
+                        <input
+                            type="email"
+                            id="Email"
+                            name="email"
+                            disabled={isRegistering}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.email}
+                            className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-green-500"
+                        />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                        <label htmlFor="Password" className="block text-sm font-medium text-gray-700">Password</label>
+                        <input
+                            type="password"
+                            id="Password"
+                            name="password"
+                            disabled={isRegistering}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.password}
+                            className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-green-500"
+                        />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                        <label htmlFor="PasswordConfirmation" className="block text-sm font-medium text-gray-700">Password Confirmation</label>
+                        <input
+                            type="password"
+                            id="PasswordConfirmation"
+                            name="confirmPassword"
+                            disabled={isRegistering}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            value={formik.values.confirmPassword}
+                            className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm py-2 border active:outline-green-500"
+                        />
+                    </div>
+
+                    <div className="col-span-6">
+                        <button
+                            type="submit"
+                            disabled={isRegistering}
+                            className="w-full px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none"
+                        >
+                            {isRegistering ? 'Registering...' : 'Sign Up'}
+                        </button>
+                    </div>
+                </form>
+
+                <p className="mt-4 text-sm text-gray-500">
+                    Already have an account? <Link to="/sign-in" className="text-green-600 hover:underline">Log In</Link>
+                </p>
             </div>
-        </section>
+        </AuthWrapper>
     );
 };
 

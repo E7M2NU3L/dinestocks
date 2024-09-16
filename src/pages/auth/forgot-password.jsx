@@ -10,7 +10,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   
   // Forgot Password mutation query
-  const { mutateAsync: ForgotPassword, isPending: isSendingEmail, isSuccess: isSentEmail, isError: isFailedtoSendEmail } = ForgotPasswordQuery();
+  const { mutateAsync: ForgotPassword, isPending: isSendingEmail, isSuccess: isSentEmail} = ForgotPasswordQuery();
 
   // Handle email input changes
   const handleEmail = (e) => {
@@ -78,19 +78,6 @@ const ForgotPassword = () => {
       }, 1500);
     }
   }, [isSentEmail, navigate]);
-
-  useEffect(() => {
-    toast.error("Failed to reset the Password", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "light",
-      transition: Bounce,
-    })
-  } , [isFailedtoSendEmail])
 
   return (
     <div className="min-h-[90vh] flex justify-center items-center bg-gray-100">

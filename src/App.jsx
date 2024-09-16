@@ -11,14 +11,32 @@ import ForgotPassword from "./pages/auth/forgot-password"
 import SingleBlog from "./pages/root/single-blogs"
 import ContactUs from "./pages/root/contact-us"
 import RootLayout from "./layouts/root-layouts"
-import DashboardLayout from "./layouts/dashboard-layout"
-import Dashboard from "./pages/protected/dashboard"
 import Features from "./pages/root/features"
 import Docs from "./pages/root/docs"
 import AboutUs from "./pages/root/about-us"
 import ChooseRole from "./pages/auth/choose-role"
 import CreateRestaurant from "./pages/auth/create-restaurant"
 import CreateVendor from "./pages/auth/create-vendor"
+import DashboardVendor from "./pages/protected/vendor/dashboard-vendor"
+import IsLoggedin from "./middlewares/isLoggedin"
+import IsVendor from "./middlewares/isVendor"
+import ProfileVendor from "./pages/protected/vendor/profile-vendor"
+import Cart from "./pages/protected/restaurant/cart"
+import ProductsBuy from "./pages/protected/restaurant/products-buy"
+import InvoiceRestaurant from "./pages/protected/restaurant/invoice-restaurant"
+import ChatRestaurant from "./pages/protected/restaurant/chat-restaurant"
+import DeliveryRestaurant from "./pages/protected/restaurant/delivery-product"
+import IsRestaurant from "./middlewares/isRestaurant"
+import ProfileRestaurant from "./pages/protected/restaurant/profile-restaurant"
+import DashBoardRestaurant from "./pages/protected/restaurant/dashboard-restaurant"
+import Settings from "./pages/protected/settings"
+import Finance from "./pages/protected/vendor/finanace"
+import Inventory from "./pages/protected/vendor/inventory"
+import InvoiceVendor from "./pages/protected/vendor/invoice-vendor"
+import ChatVendor from "./pages/protected/vendor/chat-vendor"
+import DeliveryVendor from "./pages/protected/vendor/delivery-vendor"
+import DahsboardLayoutRestaurant from "./layouts/dashboard-layout-restaurant"
+import DashboardLayoutVendor from "./layouts/dashboard-layout-vendor"
 
 function App() {
   return (
@@ -50,10 +68,33 @@ function App() {
             <Route path="/create-vendor" element={<CreateVendor />} />
           </Route>
 
-          {/* Dashboard Routes */}
-          <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
+            <Route element={<IsLoggedin />}>
+              <Route element={<DashboardLayoutVendor />} >
+                <Route element={<IsVendor />}>
+                  <Route path="/dashboard-vendor" element={<DashboardVendor />} />
+                  <Route path="/profile-vendor" element={<ProfileVendor />} />
+                  <Route path="/finanace" element={<Finance />} /> 
+                  <Route path="/inventory" element={<Inventory />} />
+                  <Route path="/invoice-vendor" element={<InvoiceVendor />} />
+                  <Route path="/chat-ven" element={<ChatVendor />} />
+                  <Route path="/delivery-vendor" element={<DeliveryVendor />} />
+                </Route>
+              </Route>
+
+              <Route element={<IsRestaurant />}>
+              <Route element={<DahsboardLayoutRestaurant />}>
+                <Route path="/cart" element={<Cart />} /> 
+                <Route path="/products-buy" element={<ProductsBuy />} />
+                <Route path="/invoice-restaurant" element={<InvoiceRestaurant />} />
+                <Route path="/chat-rest" element={<ChatRestaurant />} />
+                <Route path="/delivery-product" element={<DeliveryRestaurant />} />
+                <Route path="/profile-restaurant" element={<ProfileRestaurant />} />
+                <Route path="/dashboard-restaurant" element={<DashBoardRestaurant />} />
+                </Route>
+              </Route>
+
+              <Route path="/settings" element={<Settings />} />
+            </Route>
         </Routes>
       </BrowserRouter>
     </>
