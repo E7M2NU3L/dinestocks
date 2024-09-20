@@ -84,11 +84,6 @@ const ChooseRole = () => {
             </CardFooter>
         </Card>
     </div>
-    <div className='min-h-[90vh] z-10 absolute inset-0 w-full h-full bg-gradient-to-tr from-green-400 via-emerald-400 to-green-500'>
-        <img src={AssetImage} className='min-h-[90vh] inset-0 w-full h-full' alt='bg-image' />
-        <div  className='min-h-[90vh] absolute inset-0 w-full h-full bg-slate-800 bg-opacity-50 z-20'>
-        </div>
-    </div>
     </main>
   )
 }

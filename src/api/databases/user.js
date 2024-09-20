@@ -2,16 +2,16 @@ import { supabase } from "../../config/supabaseConf";
 
 export async function CreateUser({ firstname, lastname, email, password, userId }) {
     try {
-        const { data, error } = await supabase.from('User').insert({
+        const {data, error } = await supabase.from('User').insert({
             firstname: firstname,
             lastname: lastname,
             email: email,
             password: password,
             user_id : userId
-        });
-
-        console.log(data);
+        }).select();
+        
         console.log(error);
+        console.log(data);
 
         if (error) throw new Error("Database insertion failed");
 

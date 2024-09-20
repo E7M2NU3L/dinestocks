@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import OptimizedImage from '../../components/image-store/image-store';
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { LoginSchema } from '../../schemas/auth';
@@ -7,10 +6,12 @@ import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { LoginQuery } from '../../queries/users';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthWrapper from '../../components/auth/auth-wrapper';
+import { isLoginComplete } from '../../features/users';
+import { useDispatch } from 'react-redux';
 
 const SignIn = () => {
     const {mutateAsync : Login, isPending : isLogging, isSuccess : isLoggedin, isError : isfailedtoLogin} = LoginQuery();
-
+    const dispatch = useDispatch();
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -27,34 +28,11 @@ const SignIn = () => {
                 })
 
                 console.log(response);
+                dispatch(
+                    isLoginComplete(response)
+                )
             } catch (error) {
-                if (error instanceof Error) {
-                    console.log(error.message);
-                    toast.error(error.message, {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        transition: Bounce,
-                        });
-                } else {
-                    console.log("Unknown Error");
-                    toast.error("Unknown Error", {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                        transition: Bounce,
-                        });
-                }
+               console.log(error);
             }
         }
     });

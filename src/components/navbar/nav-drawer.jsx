@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button, Image } from '@nextui-org/react';
 import Logo from '../../assets/logo.png';
@@ -9,8 +9,25 @@ import {
   DropdownMenu,
   DropdownItem
 } from "@nextui-org/dropdown";
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '../../config/supabaseConf';
 
 const NavDrawer = ({ isOpen, onClose }) => {
+  const fetchUser = async () => {
+    const User = await supabase.auth.getUser();
+    return User;
+  }
+
+  const {isPending, data, error} = useQuery({
+    queryFn : fetchUser
+  });
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data])
+
   return (
     <motion.div
       className='fixed inset-0 bg-white flex px-5 w-full justify-around h-screen flex-col gap-y-6 items-center'

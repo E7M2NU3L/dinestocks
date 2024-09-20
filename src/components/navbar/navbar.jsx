@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Image } from '@nextui-org/react';
 import Logo from '../../assets/logo.png';
 import { Link, NavLink } from 'react-router-dom';
@@ -9,13 +9,45 @@ import {
   DropdownItem
 } from "@nextui-org/dropdown";
 import NavDrawer from './nav-drawer';
+import { supabase } from '../../config/supabaseConf';
+import { useQuery } from '@tanstack/react-query';
+import { LogoutQuery } from '../../queries/users';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const fetchUser = async () => {
+    const User = await supabase.auth.getUser();
+    return User;
+  }
+
+  const {isPending, data, error} = useQuery({
+    queryFn : fetchUser
+  });
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+    }
+  }, [data])
+
   const toggleDrawer = () => {
     setDrawerOpen(prev => !prev);
   };
+
+  const {mutateAsync : Logout, isError : isLogoutFailed, isSuccess : isLogoutSuccess} = LogoutQuery();
+  useEffect(() => {
+    if (isLogoutSuccess) {
+      toast.success("user has been logged out");
+    }
+  }, [isLogoutSuccess]);
+
+  useEffect(() => {
+    if (isLogoutFailed) {
+      toast.error("user logout failed!");
+    }
+  }, [isLogoutFailed]);
 
   return (
     <div className='flex px-5 w-full justify-between md:justify-around h-[10vh] items-center'>
@@ -70,13 +102,25 @@ const Navbar = () => {
       </section>
 
       <section className='hidden md:flex items-center gap-x-4'>
-        <Link to={"/sign-up"}>
-          <Button variant='solid' color='success'>Get Started</Button>
-        </Link>
+        {data?.data?.user?.email ? (
+          <>
+            <Link to={"/dashboard"}>
+              <Image src={data.data.user.user_metadata?.avatar_url} alt='user-profile' className='h-12 w-12 rounded-full border border-green-500' />
+            </Link>
 
-        <Link to={"/sign-in"}>
-          <Button variant='bordered' className='border border-dark-5 hover:bg-dark-5 hover:text-dark-3 transition-all duration-250 ease-in-out'>Log in</Button>
-        </Link>
+              <Button variant='solid' color='danger' onClick={Logout}>Logout</Button>
+          </>
+        ) : (
+          <>
+            <Link to={"/sign-up"}>
+              <Button variant='solid' color='success'>Get Started</Button>
+            </Link>
+
+            <Link to={"/sign-in"}>
+              <Button variant='bordered' className='border border-dark-5 hover:bg-dark-5 hover:text-dark-3 transition-all duration-250 ease-in-out'>Log in</Button>
+            </Link>
+          </>
+        )}
       </section>
 
       <section className='md:hidden'>

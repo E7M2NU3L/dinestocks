@@ -28,18 +28,7 @@ const Signup = () => {
                 console.log(promise);
                
             } catch (error) {
-                const errorMessage = error instanceof Error ? error.message : "Unknown Error Occurred";
-                toast.error(errorMessage, {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                    transition: Bounce,
-                });
+                console.log(error);
             }
         }
     });
