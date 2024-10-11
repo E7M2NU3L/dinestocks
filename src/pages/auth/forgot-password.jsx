@@ -2,7 +2,7 @@ import { Button, Card, CardBody, CardHeader, Image, Input } from '@nextui-org/re
 import React, { useEffect, useState } from 'react';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { ForgotPasswordQuery } from '../../queries/users';
+import { ForgotPasswordQuery } from '../../queries/auth/users';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ForgotPassword = () => {

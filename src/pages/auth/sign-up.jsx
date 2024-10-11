@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
-import OptimizedImage from '../../components/image-store/image-store';
 import { Link, useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 import { RegisterSchema } from '../../schemas/auth';
-import { RegisterQuery } from '../../queries/users';
+import { RegisterQuery } from '../../queries/auth/users';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthWrapper from '../../components/auth/auth-wrapper';
+import { setRegUser } from '../../features/reg_user';
+import { useDispatch } from 'react-redux';
 
 const Signup = () => {
     const { mutateAsync: Register, isPending: isRegistering, isError: isFailedToRegister, isSuccess: isRegistered } = RegisterQuery();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -26,7 +28,8 @@ const Signup = () => {
                 console.log(data);
                 const promise = await Register(data);
                 console.log(promise);
-               
+
+                dispatch(setRegUser(promise));
             } catch (error) {
                 console.log(error);
             }
@@ -63,7 +66,7 @@ const Signup = () => {
                 transition: Bounce,
             });
             setTimeout(() => { 
-                navigate('/choose-role')
+                navigate('/verify-user');
             }, 1500);
         }
     }, [isRegistered]);

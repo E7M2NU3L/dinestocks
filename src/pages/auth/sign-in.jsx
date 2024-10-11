@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { LoginSchema } from '../../schemas/auth';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
-import { LoginQuery } from '../../queries/users';
+import { LoginQuery } from '../../queries/auth/users';
 import 'react-toastify/dist/ReactToastify.css';
 import AuthWrapper from '../../components/auth/auth-wrapper';
 import { isLoginComplete } from '../../features/users';

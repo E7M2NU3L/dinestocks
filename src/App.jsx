@@ -37,6 +37,7 @@ import ChatVendor from "./pages/protected/vendor/chat-vendor"
 import DeliveryVendor from "./pages/protected/vendor/delivery-vendor"
 import DahsboardLayoutRestaurant from "./layouts/dashboard-layout-restaurant"
 import DashboardLayoutVendor from "./layouts/dashboard-layout-vendor"
+import VerifyUser from "./pages/auth/verify-user"
 
 function App() {
   return (
@@ -64,6 +65,7 @@ function App() {
             <Route path="/choose-role" element={
               <ChooseRole />
             } />
+            <Route path="/verify-user" element={<VerifyUser />} />
             <Route path="/create-restaurant" element={<CreateRestaurant />} />
             <Route path="/create-vendor" element={<CreateVendor />} />
           </Route>

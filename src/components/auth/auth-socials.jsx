@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { LoginwithGithubQuery, LoginwithGoogleQuery, LoginwithLinkedInQuery } from '../../queries/users';
+import { LoginwithGithubQuery, LoginwithGoogleQuery, LoginwithLinkedInQuery } from '../../queries/auth/users';
 import { ToastContainer, toast } from 'react-toastify';
 
 const LoginOptions = () => {

@@ -1,10 +1,14 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Navigate, Outlet } from 'react-router-dom'
 
 const IsLoggedin = () => {
+  const AuthInfo = useSelector((state) => state.auth);
+  console.log(AuthInfo);
+
   return (
     <div>
-        <Outlet />
+        {AuthInfo ? <Outlet /> : <Navigate to={"/sign-up"} />}
     </div>
   )
 }

@@ -31,6 +31,15 @@ const ChooseRole = () => {
                 }
                 const response = UpdateUser(data);
                 console.log(response);
+
+                setTimeout(() => {
+                    if (role === "vendor") {
+                        navigate('/create-vendor')
+                    }
+                    else if (role === "restaurant") {
+                        navigate('/create-restaurant')
+                    }
+                }, 1000); 
             } catch (error) {
                 if (error instanceof Error) {
                     toast.error(error.message);
@@ -62,10 +71,10 @@ const ChooseRole = () => {
                 <form onSubmit={() => {}}>
                 <Select label="Choose your role">
                     <SelectSection title={"roles"} >
-                    <SelectItem>
+                    <SelectItem value={"restaurant"}>
                         Restaurant
                     </SelectItem>
-                    <SelectItem>
+                    <SelectItem value={"vendor"}>
                         Vendor
                     </SelectItem>
                     </SelectSection>

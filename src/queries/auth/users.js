@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query"
-import { RegisterUser } from "../api/auth/register"
-import { LoginUser, LoginwithGithub, LoginwithGoogle, LoginwithLinkedin } from "../api/auth/login";
-import { Logout } from "../api/auth/logout";
-import { ForgotPassword } from "../api/auth/forgot-password";
-import { ResetPassword } from "../api/auth/reset-password";
+import { RegisterUser } from "../../api/auth/register"
+import { LoginUser, LoginwithGithub, LoginwithGoogle, LoginwithLinkedin } from "../../api/auth/login";
+import { Logout } from "../../api/auth/logout";
+import { ForgotPassword } from "../../api/auth/forgot-password";
+import { ResetPassword } from "../../api/auth/reset-password";
 
 export const RegisterQuery = () => {
     return useMutation({

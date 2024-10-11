@@ -11,7 +11,7 @@ import {
 import NavDrawer from './nav-drawer';
 import { supabase } from '../../config/supabaseConf';
 import { useQuery } from '@tanstack/react-query';
-import { LogoutQuery } from '../../queries/users';
+import { LogoutQuery } from '../../queries/auth/users';
 import { toast } from 'react-toastify';
 
 const Navbar = () => {
